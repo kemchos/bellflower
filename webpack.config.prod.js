@@ -20,18 +20,29 @@ module.exports = {
       {
         test: /\.js?$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+            plugins: [
+              '@babel/plugin-proposal-decorators',
+              [
+                '@babel/plugin-proposal-class-properties',
+                {
+                  loose: true
+                }
+              ]
+            ]
+          }
+        }
       }
     ]
   },
+  optimization : {
+    minimize: true
+  },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
     new CleanWebpackPlugin(['public/js'])
   ]
 }
