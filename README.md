@@ -1,2 +1,2 @@
-# hydrangea
-Make it easy to access bookmarks via popup.
+# bellflower
+Save tabs and restore them.
